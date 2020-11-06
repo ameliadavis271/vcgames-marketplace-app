@@ -1,0 +1,13 @@
+<h1> Listings </h1>
+
+<div class="listings">
+  <% @listings.each do |listing| %>
+    <p> Name: <%= listing.name %> </p>
+    <p> Description: <%= listing.description %> </p>
+    <%# <% if listing.sold = true %>
+      <%# <p> SOLD </p> %>
+    <%# <% end %>
+  <% end %>
+</div>
+
+<%= link_to "New Listing", new_listing_path %>

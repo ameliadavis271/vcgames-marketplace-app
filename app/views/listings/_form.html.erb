@@ -1,0 +1,17 @@
+  <% if @listing.errors.full_messages.any? %>
+    <ul>
+      <% @listing.errors.full_messages.each do |message| %>
+        <li style="color: red">
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<%= form_with model: listing, local: true do |f| %>
+  <%=  f.label :name %>
+  <%= f.text_area :name %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.submit %>
+<% end %>
