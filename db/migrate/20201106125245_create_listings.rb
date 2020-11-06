@@ -3,6 +3,7 @@ class CreateListings < ActiveRecord::Migration[6.0]
     create_table :listings do |t|
       t.string :name
       t.string :description
+      t.float :price
       t.boolean :sold
 
       t.timestamps
