@@ -1,4 +1,5 @@
   <% if @listing.errors.full_messages.any? %>
+  <p> <%= "#{pluralize(@listing.errors.count, "error")} prohibited this listing from being saved:" %> </p>
     <ul>
       <% @listing.errors.full_messages.each do |message| %>
         <li style="color: red">
