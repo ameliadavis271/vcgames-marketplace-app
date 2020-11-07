@@ -10,6 +10,14 @@
   </head>
 
   <body>
-    <%= yield %>
+  <p class="alert"><%= alert %></p>
+    <div class="site-wrapper">
+      <nav>
+        <%= link_to "New Listing", new_listing_path, class: "listing-button" %>
+      </nav>
+      <div class=container>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

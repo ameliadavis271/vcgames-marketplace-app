@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
 
 def index
   @listings = Listing.all
@@ -32,7 +33,7 @@ end
 private
 
 def listing_params
-  params.require(:listing).permit(:name, :description, :sold)
+  params.require(:listing).permit(:name, :description, :price, :sold)
 end
 
 def set_params
