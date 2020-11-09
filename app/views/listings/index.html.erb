@@ -1,6 +1,18 @@
 <h1> Listings </h1>
 <hr>
 
+<%# <%= Search Form %>
+<%= form_with(scope: :search, url: listings_path, method: 'get', local: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%# # change this according to consoles once implemented %>
+  <%# <%= f.label :categories %>
+  <%# <%= f.collection_select :categories, Category.all, :id, :name, {}, { multiple: true } %>
+
+  <%= f.submit %>
+<% end %>
+
 <div class="listings">
   <% @listings.each do |listing| %>
     <div class="listing">

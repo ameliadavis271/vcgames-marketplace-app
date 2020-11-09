@@ -2,7 +2,14 @@ class ListingsController < ApplicationController
 before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
 
 def index
-  @listings = Listing.all
+  if params[:search].present?
+    @listings = Listing.where(nil)
+    search_params.each do |key, value|
+      @listings = @listings.public_send("search_by_#{key}", value)
+    end
+  else
+    @listings = Listing.all
+  end
 end
 
 def show
@@ -34,6 +41,10 @@ private
 
 def listing_params
   params.require(:listing).permit(:name, :description, :price, :sold)
+end
+
+def search_params
+  params.require(:search).permit(:name)
 end
 
 def set_params
