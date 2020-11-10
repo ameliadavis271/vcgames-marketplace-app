@@ -1,0 +1,20 @@
+  <% if @profile.errors.full_messages.any? %>
+  <p> <%= "#{pluralize(@profile.errors.count, "error")} prohibited this listing from being saved:" %> </p>
+    <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li style="color: red">
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<%= form_with model: profile, local: true do |f| %>
+  <%= f.label :fullname %>
+  <%= f.text_area :fullname %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar, accept: 'image/png, image/jpg, image/jpeg' %>
+  <%= f.submit %>
+<% end %>

@@ -5,7 +5,7 @@
     </section>
     <section id=auth_links_area> 
       <% if user_signed_in? %>
-        <%# <%= link_to "Profile", profile_path(profile.id) %> %>
+        <%= link_to "Profile", profiles_path %>
         <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to "Signup", new_user_registration_path %>
