@@ -12,6 +12,9 @@
   <%= f.submit %>
 <% end %>
 
+<%= link_to "New Listing", new_listing_path %>
+
+
 <div class="listings">
   <% @listings.each do |listing| %>
     <div class="listing">
