@@ -3,7 +3,6 @@
 
 <%# <%= Search Form %>
 <%= form_with(scope: :search, url: listings_path, method: 'get', local: true) do |f| %>
-  <%= f.label :name %>
   <%= f.text_field :name %>
 
   <%# # change this according to consoles once implemented %>
@@ -30,9 +29,21 @@
           <p> 
             Description: <%= listing.description %> 
           </p>
+          <p> 
+            Price: <%= listing.price %> 
+          </p>
+          <p> 
+          <%= image_tag listing.picture, class: 'listing-img' if listing.picture.attached? %> 
+          </p>
             <%# <% if listing.sold = true %>
             <%# <p> SOLD </p> %>
             <%# <% end %>
+          <p>
+            <% if user_signed_in? && current_user.listings.include?(listing) %>
+  ​            <%= link_to "Edit", edit_listing_path(listing.id) %>
+              <%= link_to "Delete", listing_path(listing.id), method: :delete %>
+            <% end %>
+          </p>
         </div>
       </div>
     </div>
