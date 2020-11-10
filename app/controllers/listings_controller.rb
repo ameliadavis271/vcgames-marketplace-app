@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :destroy]  
+  before_action :set_listing, only: [:show, :edit, :update, :destroy]  
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
 
   def index
@@ -30,11 +30,10 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    set_listing
   end
 
   def update
-    @listing = current_user.listings.update(listing_params)
+    @listing.update(listing_params)
     redirect_to listings_path
   end
 
