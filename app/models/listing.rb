@@ -6,6 +6,8 @@ class Listing < ApplicationRecord
 
   belongs_to :user
 
+  has_one_attached :picture
+
   scope :search_by_name, -> (name) { where('name ILIKE ?', "%#{name}%") }
   scope :search_by_username, -> (username) { where('name ILIKE ?', "%#{username}%") }
 
