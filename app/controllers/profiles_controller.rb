@@ -1,17 +1,21 @@
 class ProfilesController < ApplicationController
-  before_action :find_profile, only: [:show, :edit, :update, :destroy]  
-  before_action :authenticate_user!, except: [:show]
   
   def index
-    @profile = Profile
   end
   
   def show
-    @profile = Profile.find(profile_params)
+    @profile = Profile.find(params[:id])
   end
+
+  def new
+    @profile = current_user.build_profile
+  end
+
+  def create
+    
   
   def edit
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
   end
   
   def update
@@ -25,10 +29,5 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:listing).permit(:fullname, :description, :avatar)
   end
-  
-  def find_profile
-    @profile = Profile.find(params[:id])
-  end
-
 end
   
