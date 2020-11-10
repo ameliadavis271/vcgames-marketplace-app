@@ -1,0 +1,7 @@
+<h1> <%= @listing.name %> </h1>
+
+<%= @listing.description %>
+<%= @listing.price %>
+<%= image_tag @listing.picture.service_url, class: 'listing-img' if @listing.picture.attached? %> 
+
+
