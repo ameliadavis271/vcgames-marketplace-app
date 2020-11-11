@@ -1,2 +1,13 @@
 <h1> User Profile </h1>
 <hr>
+
+<p> 
+<%= image_tag current_user.profile.avatar.service_url, class: 'listing-img' if current_user.profile.avatar.attached? %> 
+</p>
+<p> 
+Full Name: <%= current_user.profile.fullname %> 
+</p>
+<p> 
+What I'm after: <%= current_user.profile.description %> 
+</p>
+<%= link_to "Edit", edit_profile_path(current_user.profile.id) %>

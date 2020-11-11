@@ -5,7 +5,11 @@
     </section>
     <section id=auth_links_area> 
       <% if user_signed_in? %>
-        <%= link_to "Profile", new_profile_path %>  
+        <% if current_user.profile == nil %>
+          <%= link_to "Create Profile", new_profile_path %>  
+        <% else %>
+          <%= link_to "Profile", profiles_path %>
+        <% end %>
         <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to "Signup", new_user_registration_path %>
