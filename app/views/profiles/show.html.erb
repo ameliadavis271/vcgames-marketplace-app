@@ -1,0 +1,59 @@
+<h1> User Profile </h1>
+<hr>
+
+<p> 
+<%= image_tag @profile.avatar.service_url, class: 'listing-img' if @profile.avatar.attached? %> 
+</p>
+<p> 
+Full Name: <%= @profile.fullname %> 
+</p>
+<p> 
+What I'm after: <%= @profile.description %> 
+</p>
+<% if user_signed_in? && current_user.profile == @profile %>
+  <%= link_to "Edit", edit_profile_path(@profile.id) %>
+<% end %>
+
+ <% @profile.user.listings.each do |listing| %>
+    <div class="listing">
+      <div class="avatar-container">
+        <div class="avatar" ></div>
+      </div>
+      <div class="listing-body">
+        <p class="listing-metadata">
+          <%= listing.created_at.strftime("%Y/%m/%d") %></span>
+        </p>
+        <div class="listing-content">
+          <p> 
+            Name: <%= listing.name %> 
+          </p>
+          <p> 
+            Description: <%= listing.description %> 
+          </p>
+          <p> 
+            Brand: <%= listing.brand %> 
+          </p>
+          <p> 
+            Console: <%= listing.console %> 
+          </p>
+          <p> 
+            Price: <%= listing.price %> 
+          </p>
+          <p> 
+          <%= image_tag listing.picture.service_url, class: 'listing-img' if listing.picture.attached? %> 
+          </p>
+            <%# <% if listing.sold = true %>
+            <%# <p> SOLD </p> %>
+            <%# <% end %>
+          <p>
+          <%= link_to "Show", listing_path(listing.id) %>
+          <p>
+            <% if user_signed_in? && current_user.listings.include?(listing) %>
+  ​            <%= link_to "Edit", edit_listing_path(listing.id) %>
+              <%= link_to "Delete", listing_path(listing.id), method: :delete %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
