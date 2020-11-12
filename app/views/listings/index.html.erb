@@ -19,10 +19,11 @@
   <% @listings.each do |listing| %>
     <div class="listing">
       <div class="avatar-container">
-        <div class=avatar></div>
+        <div class="avatar" ></div>
       </div>
       <div class="listing-body">
         <p class="listing-metadata">
+            <%= link_to "View Profile", profile_path(listing.user.profile.id) %>
           <%= listing.user.username %> <span class="date"><%= listing.created_at.strftime("%Y/%m/%d") %></span>
         </p>
         <div class="listing-content">

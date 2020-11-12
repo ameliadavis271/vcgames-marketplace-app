@@ -1,0 +1,15 @@
+<h1> User Profile </h1>
+<hr>
+
+<p> 
+<%= image_tag @profile.avatar.service_url, class: 'listing-img' if @profile.avatar.attached? %> 
+</p>
+<p> 
+Full Name: <%= @profile.fullname %> 
+</p>
+<p> 
+What I'm after: <%= @profile.description %> 
+</p>
+<% if user_signed_in? && current_user.profile == @profile %>
+  <%= link_to "Edit", edit_profile_path(@profile.id) %>
+<% end %>
