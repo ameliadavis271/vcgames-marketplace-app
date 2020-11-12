@@ -19,7 +19,15 @@
   <%= f.label :brand %>
   <%= f.select :brand, options_for_select(brand_selection) %>
   <%= f.label :console %>
-  <%= f.select :console, options_for_select(sony_selection) %>
+    <% if :brand == 'Nintendo' %>
+      <%= f.select :console, options_for_select(nintendo_selection) %>
+    <% elsif :brand == 'Sega' %>
+      <%= f.select :console, options_for_select(sega_selection) %>   
+    <% elsif :brand == 'Xbox' %>
+      <%= f.select :console, options_for_select(xbox_selection) %>   
+    <% else :brand == 'Sony' %>
+      <%= f.select :console, options_for_select(sony_selection) %>   
+    <% end %>
   <%= f.label :picture %>
   <%= f.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
   <%= f.submit %>

@@ -4,7 +4,7 @@
 <%# <%= Search Form %>
 <%= form_with(scope: :search, url: listings_path, method: 'get', local: true) do |f| %>
   <%= f.text_field :name %>
-
+  
   <%# # change this according to consoles once implemented %>
   <%# <%= f.label :categories %>
   <%# <%= f.collection_select :categories, Category.all, :id, :name, {}, { multiple: true } %>
@@ -51,10 +51,6 @@
           <p>
           <%= link_to "Show", listing_path(listing.id) %>
           <p>
-            <% if user_signed_in? && current_user.listings.include?(listing) %>
-  ​            <%= link_to "Edit", edit_listing_path(listing.id) %>
-              <%= link_to "Delete", listing_path(listing.id), method: :delete %>
-            <% end %>
           </p>
         </div>
       </div>
