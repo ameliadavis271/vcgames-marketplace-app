@@ -52,3 +52,4 @@ gem 'devise'
 gem "aws-sdk-s3", "~> 1.84"
 
 gem "stripe", "~> 5.28"
+gem 'stripe-rails'
