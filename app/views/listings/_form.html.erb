@@ -16,18 +16,8 @@
   <%= f.text_area :description %>
   <%= f.label :price %>
   <%= f.text_area :price %>
-  <%= f.label :brand %>
-  <%= f.select :brand, options_for_select(brand_selection) %>
   <%= f.label :console %>
-    <% if :brand == 'Nintendo' %>
-      <%= f.select :console, options_for_select(nintendo_selection) %>
-    <% elsif :brand == 'Sega' %>
-      <%= f.select :console, options_for_select(sega_selection) %>   
-    <% elsif :brand == 'Xbox' %>
-      <%= f.select :console, options_for_select(xbox_selection) %>   
-    <% else :brand == 'Sony' %>
-      <%= f.select :console, options_for_select(sony_selection) %>   
-    <% end %>
+  <%= f.select :console, options_for_select(console_selection) %>
   <%= f.label :picture %>
   <%= f.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
   <%= f.submit %>
