@@ -23,8 +23,8 @@
       </div>
       <div class="listing-body">
         <p class="listing-metadata">
-            <%= link_to "View Profile", profile_path(listing.user.profile.id) %>
-          <%= listing.user.username %> <span class="date"><%= time_ago_in_words(listing.updated_at) %> ago </span>
+          <%= link_to (listing.user.username), profile_path(listing.user.profile.id) %>
+          <span class="date"><%= time_ago_in_words(listing.updated_at) %> ago </span>
         </p>
         <div class="listing-content">
           <p> 
