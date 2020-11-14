@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   root to: "homes#index"
   resources :listings
   resources :profiles
-  get "/payments/success", to: "payments#success"
+  resources :conversations, only: [:index, :show]
+  resources :personal_messages, only: [:new, :create]
+
+  get "payments/success", to: "payments#success"
+  post "checkout", to: "payments#checkout"
 end
