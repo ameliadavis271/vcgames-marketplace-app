@@ -1,6 +1,6 @@
 class Conversation < ApplicationRecord
 
-  has_many :personal_messages, -> { order(created_at: :asc)}, dependent: :destroy
+  has_many :personal_messages, -> { order(updated_at: :asc)}, dependent: :destroy
 
   belongs_to :author, class_name: 'User'
   belongs_to :receiver, class_name: 'User'

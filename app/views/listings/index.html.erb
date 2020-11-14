@@ -16,7 +16,7 @@
 
 
 <div class="listings">
-  <% @listings.each do |listing| %>
+  <% @listings.order('updated_at DESC').each do |listing| %>
     <div class="listing">
       <div class="avatar-container">
         <div class="avatar" ></div>
@@ -24,7 +24,7 @@
       <div class="listing-body">
         <p class="listing-metadata">
             <%= link_to "View Profile", profile_path(listing.user.profile.id) %>
-          <%= listing.user.username %> <span class="date"><%= time_ago_in_words(listing.created_at) %> ago </span>
+          <%= listing.user.username %> <span class="date"><%= time_ago_in_words(listing.updated_at) %> ago </span>
         </p>
         <div class="listing-content">
           <p> 
