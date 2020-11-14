@@ -16,7 +16,7 @@ What I'm after: <%= @profile.description %>
   <%= @profile.user.username %> | <%= link_to "Message", new_personal_message_path(receiver_id: @profile.user) %>
 <% end %>
 
- <% @profile.user.listings.each do |listing| %>
+ <% @profile.user.listings.order('updated_at DESC').each do |listing| %>
     <div class="listing">
       <div class="avatar-container">
         <div class="avatar" ></div>
