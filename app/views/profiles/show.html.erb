@@ -2,7 +2,7 @@
 <hr>
 
 <p> 
-<%= image_tag @profile.avatar.service_url, class: 'listing-img' if @profile.avatar.attached? %> 
+<%= image_tag @profile.avatar.service_url, class: 'profile-img' if @profile.avatar.attached? %> 
 </p>
 <p> 
 Full Name: <%= @profile.fullname %> 
@@ -13,7 +13,7 @@ What I'm after: <%= @profile.description %>
 <% if user_signed_in? && current_user.profile == @profile %>
   <%= link_to "Edit", edit_profile_path(@profile.id) %>
 <% else %>
-  <%= @profile.user.username %> | <%= link_to "Message", new_personal_message_path(receiver_id: @profile.user) %>
+  <%= link_to "Message", new_personal_message_path(receiver_id: @profile.user) %>
 <% end %>
 
  <% @profile.user.listings.order('updated_at DESC').each do |listing| %>
