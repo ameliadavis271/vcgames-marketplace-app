@@ -24,7 +24,7 @@
       <div class="listing-body">
         <p class="listing-metadata">
             <%= link_to "View Profile", profile_path(listing.user.profile.id) %>
-          <%= listing.user.username %> <span class="date"><%= listing.created_at.strftime("%Y/%m/%d") %></span>
+          <%= listing.user.username %> <span class="date"><%= time_ago_in_words(listing.created_at) %> ago </span>
         </p>
         <div class="listing-content">
           <p> 
