@@ -5,6 +5,6 @@
   </head>
   <body>
     <h1>Congratulations on creating a new listing, <%= @user.profile.fullname %>!</h1>
-    <p>We hope it sells quickly!</p>
+    <p>We hope <%= @listing.name %> at <%= @listing.price %> sells quickly!</p>
   </body>
 </html>
