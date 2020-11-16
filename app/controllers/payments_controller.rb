@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+
   def checkout
     # session = Stripe::Checkout::Session.create(
     #   payment_method_types: ['card'],
@@ -24,5 +26,4 @@ class PaymentsController < ApplicationController
     # @session_id = session.id
     # # render json: { id: session.id }
   end
-
 end

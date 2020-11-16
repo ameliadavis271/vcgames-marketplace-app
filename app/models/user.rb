@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -8,7 +10,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
 
-has_many :authored_cnversations, class_name: 'Conversation', foreign_key: 'author_id'
-has_many :received_cnversations, class_name: 'Conversation', foreign_key: 'receiver_id'
-has_many :personal_messages, dependent: :destroy
+  has_many :authored_cnversations, class_name: 'Conversation', foreign_key: 'author_id'
+  has_many :received_cnversations, class_name: 'Conversation', foreign_key: 'receiver_id'
+  has_many :personal_messages, dependent: :destroy
 end

@@ -12,6 +12,7 @@ What I'm after: <%= @profile.description %>
 <% else %>
   <%= link_to "Message", new_personal_message_path(receiver_id: @profile.user), class: "site-link" %>
 <% end %>
+<hr>
 
 <div class="cards">
     <% @profile.user.listings.order('updated_at DESC').each do |listing| %>

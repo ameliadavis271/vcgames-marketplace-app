@@ -1,5 +1,6 @@
-class ConversationsController < ApplicationController
+# frozen_string_literal: true
 
+class ConversationsController < ApplicationController
   before_action :set_conversation, except: [:index]
   before_action :check_participating!, except: [:index]
 
@@ -13,6 +14,7 @@ class ConversationsController < ApplicationController
 
   def new
     redirect_to conversation_path(@conversation) and return if @conversation
+
     @personal_message = current_user.personal_messages.build
   end
 
@@ -34,6 +36,6 @@ class ConversationsController < ApplicationController
   end
 
   def check_participating!
-    redirect_to conversations_path unless @conversation && @conversation.participates?(current_user)
+    redirect_to conversations_path unless @conversation&.participates?(current_user)
   end
 end

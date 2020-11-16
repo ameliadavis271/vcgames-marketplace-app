@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]  
-  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
+  before_action :set_listing, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit destroy]
 
   def index
     if params[:search].present?
@@ -23,7 +25,7 @@ class ListingsController < ApplicationController
         # picture: @listing.picture,
         amount: (@listing.price * 100).to_i,
         currency: 'aud',
-        quantity: 1,
+        quantity: 1
       }],
       payment_intent_data: {
         metadata: {
@@ -45,13 +47,12 @@ class ListingsController < ApplicationController
     if @listing.save
       UserNotifierMailer.send_listing_new_mail(current_user, @listing).deliver
       redirect_to listings_path
-    else 
+    else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @listing.update(listing_params)
@@ -76,5 +77,4 @@ class ListingsController < ApplicationController
   def set_listing
     @listing = Listing.find(params[:id])
   end
-
 end
