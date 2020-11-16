@@ -1,60 +1,31 @@
-<h1> User Profile </h1>
+<h1 class="title"> <%= @profile.fullname %>  </h1>
 <hr>
 
 <p> 
 <%= image_tag @profile.avatar.service_url, class: 'profile-img' if @profile.avatar.attached? %> 
 </p>
 <p> 
-Full Name: <%= @profile.fullname %> 
-</p>
-<p> 
 What I'm after: <%= @profile.description %> 
 </p>
 <% if user_signed_in? && current_user.profile == @profile %>
-  <%= link_to "Edit", edit_profile_path(@profile.id) %>
+  <%= link_to "Edit", edit_profile_path(@profile.id), class: "site-link" %>
 <% else %>
-  <%= link_to "Message", new_personal_message_path(receiver_id: @profile.user) %>
+  <%= link_to "Message", new_personal_message_path(receiver_id: @profile.user), class: "site-link" %>
 <% end %>
 
- <% @profile.user.listings.order('updated_at DESC').each do |listing| %>
-    <div class="listing">
-      <div class="avatar-container">
-        <div class="avatar" ></div>
-      </div>
-      <div class="listing-body">
-        <p class="listing-metadata">
-          <strong> <%= time_ago_in_words(listing.updated_at) %> ago </strong>
-        <div class="listing-content">
-          <p> 
-            Name: <%= listing.name %> 
-          </p>
-          <p> 
-            Description: <%= listing.description %> 
-          </p>
-          <p> 
-            Brand: <%= listing.brand %> 
-          </p>
-          <p> 
-            Console: <%= listing.console %> 
-          </p>
-          <p> 
-            Price: <%= listing.price %> 
-          </p>
-          <p> 
-          <%= image_tag listing.picture.service_url, class: 'listing-img' if listing.picture.attached? %> 
-          </p>
-            <%# <% if listing.sold = true %>
-            <%# <p> SOLD </p> %>
-            <%# <% end %>
-          <p>
-          <%= link_to "Show", listing_path(listing.id) %>
-          <p>
-            <% if user_signed_in? && current_user.listings.include?(listing) %>
-  ​            <%= link_to "Edit", edit_listing_path(listing.id) %>
-              <%= link_to "Delete", listing_path(listing.id), method: :delete %>
-            <% end %>
-          </p>
+<div class="cards">
+    <% @profile.user.listings.order('updated_at DESC').each do |listing| %>
+      <div class="card w-50" style="width: 18rem;">
+        <img class="card-img-top" <%= image_tag listing.picture.service_url, class: 'listing-img' if listing.picture.attached? %> >
+        <div class="card-body">
+          <h5 class="card-title"> <%= link_to listing.name, listing_path(listing.id) %> </h5>
+          <p class="card-text"> $<%= listing.price %> </p>
+          <p class="card-text"> <%= listing.description %> </p>
+          <% if user_signed_in? && current_user.listings.include?(listing) %>
+  ​           <%= link_to "Edit", edit_listing_path(listing.id), class: "btn btn-primary" %>
+            <%= link_to "Delete", listing_path(listing.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary"  %>
+          <% end %>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+</div>

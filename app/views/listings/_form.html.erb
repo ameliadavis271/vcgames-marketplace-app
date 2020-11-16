@@ -1,24 +1,42 @@
-  <% if @listing.errors.full_messages.any? %>
-  <p> <%= "#{pluralize(@listing.errors.count, "error")} prohibited this listing from being saved:" %> </p>
-    <ul>
-      <% @listing.errors.full_messages.each do |message| %>
-        <li style="color: red">
-          <%= message %>
-        </li>
-      <% end %>
-    </ul>
+<%= form_with(model: listing, local: true) do |form| %>
+  <% if listing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+
+      <ul>
+        <% listing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
-<%= form_with model: listing, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_area :name %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.label :price %>
-  <%= f.text_area :price %>
-  <%= f.label :console %>
-  <%= f.select :console, options_for_select(console_selection) %>
-  <%= f.label :picture %>
-  <%= f.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
-  <%= f.submit %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :console %>
+    <%= form.select :console, options_for_select(console_selection) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :picture %>
+    <%= form.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
