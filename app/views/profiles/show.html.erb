@@ -51,7 +51,7 @@ What I'm after: <%= @profile.description %>
           <p>
             <% if user_signed_in? && current_user.listings.include?(listing) %>
   ​            <%= link_to "Edit", edit_listing_path(listing.id) %>
-              <%= link_to "Delete", listing_path(listing.id), method: :delete %>
+              <%= link_to "Delete", listing_path(listing.id), method: :delete, data: { confirm: 'Are you sure?' }  %>
             <% end %>
           </p>
         </div>
