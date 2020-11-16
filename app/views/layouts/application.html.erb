@@ -8,10 +8,16 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://js.stripe.com/v3/"></script>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <%= render partial: "/layouts/navbar" %>
+    </nav>
   </head>
 
   <body>
-    <%= render partial: "/layouts/navbar" %>
-    <%= yield %>
+    <div class="site-wrapper">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

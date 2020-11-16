@@ -1,4 +1,4 @@
-<h1> Listings </h1>
+<h1 class="title"> Listings </h1>
 <hr>
 
 <%# <%= Search Form %>
@@ -12,45 +12,17 @@
   <%= f.submit %>
 <% end %>
 
-<%= link_to "New Listing", new_listing_path %>
+<%= link_to "New Listing", new_listing_path, class: "site-link" %>
 
-
-<div class="listings">
-  <% @listings.order('updated_at DESC').each do |listing| %>
-    <div class="listing">
-      <div class="avatar-container">
-        <div class="avatar" ></div>
-      </div>
-      <div class="listing-body">
-        <p class="listing-metadata">
-          <%= link_to (listing.user.username), profile_path(listing.user.profile.id) %>
-          <span class="date"><%= time_ago_in_words(listing.updated_at) %> ago </span>
-        </p>
-        <div class="listing-content">
-          <p> 
-            Name: <%= listing.name %> 
-          </p>
-          <p> 
-            Description: <%= listing.description %> 
-          </p>
-          <p> 
-            Console: <%= listing.console %> 
-          </p>
-          <p> 
-            Price: <%= listing.price %> 
-          </p>
-          <p> 
-          <%= image_tag listing.picture.service_url, class: 'listing-img' if listing.picture.attached? %> 
-          </p>
-            <%# <% if listing.sold = true %>
-            <%# <p> SOLD </p> %>
-            <%# <% end %>
-          <p>
-          <%= link_to "Show", listing_path(listing.id) %>
-          <p>
-          </p>
+<div class="cards">
+    <% @listings.order('updated_at DESC').each do |listing| %>
+      <div class="card w-50" style="width: 18rem;">
+        <img class="card-img-top" <%= image_tag listing.picture.service_url, class: 'listing-img' if listing.picture.attached? %> >
+        <div class="card-body">
+          <h5 class="card-title"> <%= link_to listing.name, listing_path(listing.id)%> </h5>
+          <p class="card-text"> $<%= listing.price %> </p>
+          <p class="card-text"> <%= listing.description %> </p>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 </div>

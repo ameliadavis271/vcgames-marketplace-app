@@ -1,49 +1,17 @@
-.home-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.header {
+.site-wrapper {
+  background-color: #242124;
   color: white;
-  background-color: rgba(13, 129, 138, 0.6);
 }
 
-#site_links_area a, #auth_links_area a {
-  border: 1px solid #333;
+.container {
+
+  .title {
+    padding-top: 20px;
+    font-weight: bolder;
+  }
+
+  .site-link {
+    text-decoration: none;
+    color: yellow;
+  }
 }
-
-#post_show_page {
-  color: white;
-  font-size: 1.2em;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  background-color: rgba(29, 119, 131, 0.8);
-}
-
-.navbar a {
-display: inline-block;
-color: black;
-text-decoration: none;
-font-weight: bold;
-font-size: 20px;
-padding: 5px;
-}
-
-
-// .search, .welcome {
-//   display: flex;
-//   justify-content: center;
-//   padding: 10px;
-// }
-
-// .search {
-//   opacity: 0.7;
-// }
-
-// .search:hover, .search:focus {
-//   opacity: 1;
-// }
-

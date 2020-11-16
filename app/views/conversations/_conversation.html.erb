@@ -5,6 +5,6 @@
   <br>
   <em> <%= conversation.personal_messages.last.body.truncate(50) %> </em>
   <br>
-  <%= link_to 'View conversation', conversation_path(conversation) %>
+  <%= link_to 'View conversation', conversation_path(conversation), class: "site-link" %>
   <hr>
 </div>
