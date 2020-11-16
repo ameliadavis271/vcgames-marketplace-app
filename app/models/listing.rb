@@ -3,10 +3,11 @@ class Listing < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 280 }
+  validates :price, presence: true
+  has_one_attached :picture
+  validates :picture, presence: true
 
   belongs_to :user
-
-  has_one_attached :picture
 
   scope :search_by_name, -> (name) { where('name ILIKE ?', "%#{name}%") }
   scope :search_by_username, -> (username) { where('name ILIKE ?', "%#{username}%") }
