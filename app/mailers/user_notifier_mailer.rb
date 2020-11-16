@@ -5,7 +5,7 @@ default from: 'ameliadavis271@gmail.com'
     mail( to: @user.email,subject: 'Thanks for signing up for our amazing app' )
   end
 
-  def send_listing_new_mail(user, listing)
+  def send_listing_new_mail(user)
     @user = user
     mail( to: @user.email, subject: 'Thanks for creating a new listing!' )
   end
