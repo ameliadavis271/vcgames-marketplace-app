@@ -16,12 +16,13 @@
 
 <div class="cards">
     <% @listings.order('updated_at DESC').each do |listing| %>
-      <div class="card w-50" style="width: 18rem;">
-        <img class="card-img-top" <%= image_tag listing.picture.service_url, class: 'listing-img' if listing.picture.attached? %> >
+      <div class="card" style="width: 18rem;">
+        <%= image_tag listing.picture.service_url, class: 'card-img-top' if listing.picture.attached? %>
         <div class="card-body">
           <h5 class="card-title"> <%= link_to listing.name, listing_path(listing.id)%> </h5>
           <p class="card-text"> $<%= listing.price %> </p>
           <p class="card-text"> <%= listing.description %> </p>
+          <p class="card-text"> Created by <%= link_to listing.user.profile.fullname, profile_path(listing.user.profile.id) %> </p>
         </div>
       </div>
     <% end %>
