@@ -4,15 +4,12 @@
 <%# <%= Search Form %>
 <%= form_with(scope: :search, url: listings_path, method: 'get', local: true) do |f| %>
   <%= f.text_field :name %>
-  
-  <%# # change this according to consoles once implemented %>
-  <%# <%= f.label :categories %>
-  <%# <%= f.collection_select :categories, Category.all, :id, :name, {}, { multiple: true } %>
-
   <%= f.submit %>
 <% end %>
 
-<%= link_to "New Listing", new_listing_path, class: "site-link" %>
+<br>
+
+<%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
 
 <div class="cards">
     <% @listings.order('updated_at DESC').each do |listing| %>
