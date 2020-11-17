@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
 
-has_many :authored_cnversations, class_name: 'Conversation', foreign_key: 'author_id'
-has_many :received_cnversations, class_name: 'Conversation', foreign_key: 'receiver_id'
+has_many :authored_conversations, -> { order(updated_at: :desc)}, dependent: :destroy, class_name: 'Conversation', foreign_key: 'author_id'
+has_many :received_conversations, -> { order(updated_at: :desc)}, dependent: :destroy, class_name: 'Conversation', foreign_key: 'receiver_id'
 has_many :personal_messages, dependent: :destroy
 end
