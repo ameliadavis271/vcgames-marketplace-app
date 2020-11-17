@@ -3,7 +3,7 @@
   <br>
   <strong> Chatting with <%= conversation.with(current_user).profile.fullname.upcase %> </strong>
   <br>
-  <em> <%= conversation.personal_messages.last.body.truncate(50) %> </em>
+  <em> <%= conversation.personal_messages.first.body.truncate(50) %> </em>
   <br>
   <%= link_to 'View conversation', conversation_path(conversation), class: "site-link" %>
   <hr>
