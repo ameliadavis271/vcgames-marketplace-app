@@ -1,6 +1,11 @@
 <h1 class="title"> <%= @listing.name %> </h1>
-<button data-stripe="payment"> Purchase </button>
 <hr>
+<% if user_signed_in? && current_user.listings.include?(@listing) %>
+  <%= link_to "Edit", edit_listing_path(@listing.id), class: "btn btn-primary" %>
+<% else %>  
+  <button data-stripe="payment"> Purchase </button>
+<% end %>
+<br>
 
 <div class="show-card">
   <div class="show-card-body">
