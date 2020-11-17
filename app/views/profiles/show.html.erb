@@ -40,6 +40,7 @@ What I'm after: <%= @profile.description %>
         <%= image_tag listing.picture.service_url, class: 'card-img-top' if listing.picture.attached? %>
         <div class="card-body">
           <h5 class="card-title"> <%= link_to listing.name, listing_path(listing.id) %> </h5>
+          <p class="card-text"> <%= listing.console %> </p>
           <p class="card-text"> $<%= listing.price %> </p>
           <p class="card-text"> <%= listing.description %> </p>
           <% if user_signed_in? && current_user.listings.include?(listing) %>
