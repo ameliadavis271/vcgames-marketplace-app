@@ -11,8 +11,8 @@
             Menu
           </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#"><%= link_to "Profile", current_user.profile %></a>
-              <a class="dropdown-item" href="#"><%= link_to "Messages", conversations_path %></a>
+              <%= link_to "Profile", current_user.profile, class: 'dropdown-item' %>
+              <%= link_to "Messages", conversations_path, class: 'dropdown-item' %>
             </div>
         </li>
       <% end %>

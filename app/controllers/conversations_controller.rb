@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   before_action :check_participating!, except: [:index]
 
   def index
-    @conversations = Conversation.participating(current_user).order('updated_at DESC')
+    @conversations = Conversation.participating(current_user).includes(:personal_messages).order("personal_messages.created_at DESC")
   end
 
   def show
@@ -17,17 +17,6 @@ class ConversationsController < ApplicationController
   end
 
   private
-
-  # def find_conversation!
-  #   if params[:receiver_id]
-  #     @receiver = User.find_by(id: params[:receiver_id])
-  #     redirect_to(root_path) and return unless @receiver
-  #     @conversation = Conversation.between(current_user.id, @receiver.id)[0]
-  #   else
-  #     @conversation = Conversation.find_by(id: params[:conversation_id])
-  #     redirect_to(root_path) and return unless @conversation && @conversation.participates?(current_user)
-  #   end
-  # end
 
   def set_conversation
     @conversation = Conversation.find_by(id: params[:id])

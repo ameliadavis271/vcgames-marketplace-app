@@ -1,16 +1,21 @@
 .site-wrapper {
-  background-color: #242124;
-  color: white;
-}
+  
+  .container {
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #343a40; 
+    color: white;
+    min-height: 100%;
+    opacity: 0.8;
 
-.container {
+    .title {
+      padding-top: 20px;
+      font-weight: bolder;
+    }
 
-  .title {
-    padding-top: 20px;
-    font-weight: bolder;
-  }
-
-  .site-link {
-    text-decoration: none;
+    .site-link {
+      text-decoration: none;
+    }
   }
 }
