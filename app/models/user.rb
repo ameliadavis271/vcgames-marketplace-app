@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   has_many :listings
+  has_many :payments
   has_one :address
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile

@@ -5,13 +5,13 @@ class ListingsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit destroy]
 
   def index
-    if params[:search].present?
+    if params[:search].present? 
       @listings = Listing.where(nil)
       search_params.each do |key, value|
-        @listings = @listings.public_send("search_by_#{key}", value)
+        @listings = @listings.public_send("search_by_#{key}", value).where(sold: nil)
       end
     else
-      @listings = Listing.all
+      @listings = Listing.where(sold: nil)
     end
   end
 
@@ -32,7 +32,7 @@ class ListingsController < ApplicationController
           listing_id: @listing.id
         }
       },
-      success_url: "#{root_url}payments/success?listingId=#{@listing.id}",
+      success_url: "#{root_url}payments/success?listing_id=#{@listing.id}",
       cancel_url: "#{root_url}listings"
     )
     @session_id = session.id
