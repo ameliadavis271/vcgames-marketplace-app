@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :profiles
   resources :conversations, only: %i[index show]
   resources :personal_messages, only: %i[new create]
-
+  resources :payments, only: [:create]
   get 'payments/success', to: 'payments#success'
-  post 'checkout', to: 'payments#checkout'
+  get 'payments/cancel', to: 'payments#cancel'
 end

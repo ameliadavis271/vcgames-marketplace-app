@@ -3,7 +3,7 @@
 <% if user_signed_in? && current_user.listings.include?(@listing) %>
   <%= link_to "Edit", edit_listing_path(@listing.id), class: "btn btn-primary" %>
 <% else %>  
-  <button data-stripe="payment"> Purchase </button>
+  <button data-stripe='payment' class="btn btn-primary "> Purchase </button>
 <% end %>
 <br>
 
@@ -14,45 +14,15 @@
     <p class="card-text"> <%= @listing.description %> </p>
     <p class="card-text"> $<%= @listing.price %> </p>
   </div>
-    <%= image_tag @listing.picture.service_url, class: 'listing-img' if @listing.picture.attached? %>
+    <%= image_tag @listing.picture.service_url, class: 'card-img-top' if @listing.picture.attached? %>
 </div>
 
+<script src="https://js.stripe.com/v3/"></script>
 <script>
   document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
-    const_stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+    const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
     stripe.redirectToCheckout({
       sessionId: "<%= @session_id %>"
     });
   });
 </script>
-
-<script type="text/javascript">
-      // Create an instance of the Stripe object with your publishable API key
-      var stripe = Stripe('pk_test_51HmtRQCVj7ZbCxVkGsrJdyCKZQ2CtzpxTQfGRHYyudpzER6TlEzVUFzNxGjRGjlzugvhLRiDse0xHVWZ0IVWdPv900xB3Hu41c');
-      var checkoutButton = document.getElementById('checkout-button');
-
-      checkoutButton.addEventListener('click', function() {
-        // Create a new Checkout Session using the server-side endpoint you
-        // created in step 3.
-        fetch('/create-checkout-session', {
-          method: 'POST',
-        })
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(session) {
-          return stripe.redirectToCheckout({ sessionId: session.id });
-        })
-        .then(function(result) {
-          // If `redirectToCheckout` fails due to a browser or network
-          // error, you should display the localized error message to your
-          // customer using `error.message`.
-          if (result.error) {
-            alert(result.error.message);
-          }
-        })
-        .catch(function(error) {
-          console.error('Error:', error);
-        });
-      });
-    </script>
