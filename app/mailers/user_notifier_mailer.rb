@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class UserNotifierMailer < ApplicationMailer
+  # emails to users come from the below email
   default from: 'ameliadavis271@gmail.com'
 
-  def send_signup_email(_user)
-    mail(to: @user.email, subject: 'Thanks for signing up for our amazing app')
-  end
-
+  # method to allow for an email to be sent to user upon creatinf a new listing
   def send_listing_new_mail(user, listing)
     @user = user
     @listing = listing

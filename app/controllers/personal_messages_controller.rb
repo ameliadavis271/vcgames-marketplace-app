@@ -20,10 +20,12 @@ class PersonalMessagesController < ApplicationController
 
   private
 
+  # Only allow a list of trusted parameters through.
   def personal_message_params
     params.require(:personal_message).permit(:body)
   end
 
+  
   def find_conversation!
     if params[:receiver_id]
       @receiver = User.find_by(id: params[:receiver_id])

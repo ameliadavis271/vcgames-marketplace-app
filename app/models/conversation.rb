@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class Conversation < ApplicationRecord
+  
+  # Relationships
   has_many :personal_messages, -> { order(updated_at: :asc) }, dependent: :destroy
-
   belongs_to :author, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
 
+  # Validations
   validates :author, uniqueness: { scope: :receiver }
 
+  #Methods
   def with(current_user)
     author == current_user ? receiver : author
   end
@@ -16,6 +19,7 @@ class Conversation < ApplicationRecord
     author == user || receiver == user
   end
 
+  # Scopes
   scope :participating, lambda { |user|
     where('(conversations.author_id = ? OR conversations.receiver_id = ?)', user.id, user.id)
   }
