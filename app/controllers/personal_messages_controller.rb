@@ -25,7 +25,6 @@ class PersonalMessagesController < ApplicationController
     params.require(:personal_message).permit(:body)
   end
 
-  
   def find_conversation!
     if params[:receiver_id]
       @receiver = User.find_by(id: params[:receiver_id])

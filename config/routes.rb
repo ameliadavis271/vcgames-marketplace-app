@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :payments, only: [:create]
   get 'payments/success', to: 'payments#success'
   get 'payments/cancel', to: 'payments#cancel'
+  post '/payments/webhook', to: 'payments#webhook'
 end

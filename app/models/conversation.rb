@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Conversation < ApplicationRecord
-  
   # Relationships
   has_many :personal_messages, -> { order(updated_at: :asc) }, dependent: :destroy
   belongs_to :author, class_name: 'User'
@@ -10,7 +9,7 @@ class Conversation < ApplicationRecord
   # Validations
   validates :author, uniqueness: { scope: :receiver }
 
-  #Methods
+  # Methods
   def with(current_user)
     author == current_user ? receiver : author
   end

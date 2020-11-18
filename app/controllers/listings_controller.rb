@@ -6,9 +6,9 @@ class ListingsController < ApplicationController
 
   # GET /listings
   def index
-    #below displays all listings that haven't been sold and allows for a search call
+    # below displays all listings that haven't been sold and allows for a search call
     # refer to scope in model for search
-    if params[:search].present? 
+    if params[:search].present?
       @listings = Listing.where(nil)
       search_params.each do |key, value|
         @listings = @listings.public_send("search_by_#{key}", value).where(sold: nil)
@@ -42,7 +42,7 @@ class ListingsController < ApplicationController
     @session_id = session.id
   end
 
-# GET /listings/new
+  # GET /listings/new
   def new
     @listing = Listing.new
   end
