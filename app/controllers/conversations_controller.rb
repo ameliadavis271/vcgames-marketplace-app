@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
   # GET /listings
   def index
     # Below will display all conversations a user has had while ordering it based on their inner messages
-    @conversations = Conversation.participating(current_user).includes(:personal_messages).order("personal_messages.created_at DESC")
+    @conversations = Conversation.participating(current_user).includes(:personal_messages).order('personal_messages.created_at DESC')
   end
 
   # GET /listings/1
