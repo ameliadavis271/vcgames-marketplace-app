@@ -1,7 +1,7 @@
-# frozen_string_literal: true
-
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token
+
+  
 
   def checkout
     # session = Stripe::Checkout::Session.create(
@@ -25,5 +25,13 @@ class PaymentsController < ApplicationController
     # )
     # @session_id = session.id
     # # render json: { id: session.id }
+  end
+
+  def success
+    # move to webhook once changed, in event where payment successfully goes through
+    listing = Listing.find(params[:listing_id])
+    payment = current_user.payments.create(listing_id: listing)
+    listing.sold = true
+    listing.save
   end
 end
