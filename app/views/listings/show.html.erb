@@ -2,7 +2,9 @@
 <hr>
 <% if user_signed_in? && current_user.listings.include?(@listing) %>
   <%= link_to "Edit", edit_listing_path(@listing.id), class: "btn btn-primary" %>
-<% else %>  
+<% elsif current_user.profile == nil %>
+  <%= link_to "Purchase", new_profile_path, class: "btn btn-primary" %>
+<% else %>
   <button data-stripe='payment' class="btn btn-primary "> Purchase </button>
 <% end %>
 <br>

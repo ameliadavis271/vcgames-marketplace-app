@@ -4,17 +4,12 @@
 <%# <%= Search Form %>
 <%= form_with(scope: :search, url: listings_path, method: 'get', local: true) do |f| %>
   <%= f.text_field :name %>
-  
-  <%# # change this according to consoles once implemented %>
-  <%# <%= f.label :categories %>
-  <%# <%= f.collection_select :categories, Category.all, :id, :name, {}, { multiple: true } %>
-
   <%= f.submit %>
 <% end %>
 
 <br>
 
-<% if current_user.profile == nil %>
+<% if user_signed_in? && current_user.profile == nil %>
   <%= link_to "New Listing", new_profile_path, class: "btn btn-primary" %>
 <% else %>
   <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
@@ -25,15 +20,15 @@
       <div class="card" style="width: 18rem;">
         <%= image_tag listing.picture.service_url, class: 'card-img-top' if listing.picture.attached? %>
         <div class="card-body">
-          <% if current_user.profile == nil %>
-            <h5 class="card-title"> <%= link_to listing.name, new_profile_path %> </h5>
-          <% else %>
+          <% if user_signed_in? %>
             <h5 class="card-title"> <%= link_to listing.name, listing_path(listing.id)%> </h5>
+          <% else %>
+            <h5 class="card-title"> <%= link_to listing.name, new_user_session_path %> </h5>
           <% end %>
           <p class="card-text"> <%= listing.console %> </p>
           <p class="card-text"> $<%= listing.price %> </p>
           <p class="card-text"> <%= listing.description %> </p>
-          <% if current_user.profile == nil %>
+          <% if user_signed_in? && current_user.profile == nil %>
             <p class="card-text"> Created by <%= link_to listing.user.profile.fullname, new_profile_path %> </p>
           <% else %>
             <p class="card-text"> Created by <%= link_to listing.user.profile.fullname, profile_path(listing.user.profile.id) %> </p>
